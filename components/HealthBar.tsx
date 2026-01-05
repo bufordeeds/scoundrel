@@ -34,6 +34,7 @@ export function HealthBar({ current, max }: HealthBarProps) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,

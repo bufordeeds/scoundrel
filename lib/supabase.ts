@@ -42,18 +42,28 @@ export const getLeaderboard = async (limit = 100): Promise<LeaderboardEntry[]> =
 export const submitScore = async (
   entry: Omit<LeaderboardEntry, 'id' | 'created_at'>
 ): Promise<LeaderboardEntry | null> => {
-  const { data, error } = await supabase
-    .from('leaderboard')
-    .insert(entry)
-    .select()
-    .single();
+  console.log('Submitting score with entry:', JSON.stringify(entry));
+  console.log('Supabase URL:', SUPABASE_URL);
+  console.log('Has anon key:', !!SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== 'your-anon-key');
 
-  if (error) {
-    console.error('Error submitting score:', error);
+  try {
+    const { data, error } = await supabase
+      .from('leaderboard')
+      .insert(entry)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Supabase error submitting score:', error.message, error.code, error.details);
+      return null;
+    }
+
+    console.log('Score submitted successfully:', data);
+    return data;
+  } catch (e) {
+    console.error('Exception submitting score:', e);
     return null;
   }
-
-  return data;
 };
 
 export const getPlayerRank = async (score: number): Promise<number> => {

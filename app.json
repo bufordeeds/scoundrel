@@ -4,7 +4,7 @@
     "slug": "scoundrel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/scoundrel-icon.png",
     "userInterfaceStyle": "dark",
     "scheme": "scoundrel",
     "splash": {
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/scoundrel-icon.png",
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.buford.scoundrel",

@@ -27,6 +27,7 @@ export function GameOverModal({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [rank, setRank] = useState<number | null>(null);
+  const [submitError, setSubmitError] = useState(false);
 
   // Reset state when modal opens
   useEffect(() => {
@@ -34,6 +35,7 @@ export function GameOverModal({
       setName(playerName);
       setSubmitted(false);
       setRank(null);
+      setSubmitError(false);
     }
   }, [visible, playerName]);
 
@@ -41,6 +43,7 @@ export function GameOverModal({
     if (!name.trim()) return;
 
     setSubmitting(true);
+    setSubmitError(false);
     const result = await submitPlayerScore(
       score,
       survived,
@@ -53,6 +56,8 @@ export function GameOverModal({
     if (result.success) {
       setSubmitted(true);
       setRank(result.rank ?? null);
+    } else {
+      setSubmitError(true);
     }
   };
 
@@ -116,6 +121,11 @@ export function GameOverModal({
                   <Text style={styles.buttonText}>SUBMIT SCORE</Text>
                 )}
               </Pressable>
+              {submitError && (
+                <Text style={styles.errorText}>
+                  Failed to submit score. Please check your connection and try again.
+                </Text>
+              )}
             </View>
           ) : (
             <View style={styles.submittedSection}>
@@ -253,6 +263,12 @@ const styles = StyleSheet.create({
     color: COLORS.gold,
     fontSize: 14,
     marginTop: 4,
+  },
+  errorText: {
+    color: COLORS.monster,
+    fontSize: 14,
+    marginTop: 8,
+    textAlign: 'center',
   },
   buttons: {
     width: '100%',

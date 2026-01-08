@@ -2,10 +2,10 @@ import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Replace these with your Supabase project credentials
-const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://your-project.supabase.co';
-const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key';
+const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL!;
+const SUPABASE_KEY = process.env.EXPO_PUBLIC_SUPABASE_KEY!;
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: {
     storage: AsyncStorage,
     autoRefreshToken: true,
@@ -44,7 +44,7 @@ export const submitScore = async (
 ): Promise<LeaderboardEntry | null> => {
   console.log('Submitting score with entry:', JSON.stringify(entry));
   console.log('Supabase URL:', SUPABASE_URL);
-  console.log('Has anon key:', !!SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== 'your-anon-key');
+  console.log('Has Supabase key:', !!SUPABASE_KEY);
 
   try {
     const { data, error } = await supabase

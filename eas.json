@@ -6,16 +6,28 @@
 	"build": {
 		"development": {
 			"developmentClient": true,
-			"distribution": "internal"
+			"distribution": "internal",
+			"env": {
+				"EXPO_PUBLIC_SUPABASE_URL": "https://qsjixopofsetjtljfxlv.supabase.co",
+				"EXPO_PUBLIC_SUPABASE_KEY": "sb_publishable_GSFfBIvGszt97EfpOBuRmQ_N7SMYOjh"
+			}
 		},
 		"preview": {
 			"distribution": "internal",
 			"ios": {
 				"simulator": true
+			},
+			"env": {
+				"EXPO_PUBLIC_SUPABASE_URL": "https://qsjixopofsetjtljfxlv.supabase.co",
+				"EXPO_PUBLIC_SUPABASE_KEY": "sb_publishable_GSFfBIvGszt97EfpOBuRmQ_N7SMYOjh"
 			}
 		},
 		"production": {
-			"autoIncrement": true
+			"autoIncrement": true,
+			"env": {
+				"EXPO_PUBLIC_SUPABASE_URL": "https://qsjixopofsetjtljfxlv.supabase.co",
+				"EXPO_PUBLIC_SUPABASE_KEY": "sb_publishable_GSFfBIvGszt97EfpOBuRmQ_N7SMYOjh"
+			}
 		}
 	},
 	"submit": {
